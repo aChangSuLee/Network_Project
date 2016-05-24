@@ -86,16 +86,16 @@ public class CustomAdapter extends BaseAdapter {
             }
 
             // Text 등록
-            name.setText(name_List.get(position));
-            price.setText(price_List.get(position));
-            seller.setText(seller_List.get(position));
+            name.setText("상품명: "+name_List.get(position));
+            price.setText("가격: "+price_List.get(position));
+            seller.setText("판매자: "+seller_List.get(position));
 
             // 리스트 아이템을 터치 했을 때 이벤트 발생
             convertView.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View v) {
-                    mCustomDialog = new CustomDialog(context, name_List.get(pos), item_id.get(pos));
+                    mCustomDialog = new CustomDialog( context, name_List.get(pos), item_id.get(pos), price_List.get(pos), seller_List.get(pos));
                     mCustomDialog.show();
                     //Toast.makeText(context, "리스트 클릭 : "+m_List.get(pos), Toast.LENGTH_SHORT).show();
                 }

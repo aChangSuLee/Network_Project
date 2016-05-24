@@ -81,8 +81,11 @@ public class NetworkManager {
             socket = new Socket ();
             socket.connect(serverAddr, 5000);
             socket.setSoTimeout(100);
+            int height= image.getHeight();
+            int width= image.getWidth();
+            Bitmap uploadBitmap = Bitmap.createScaledBitmap( image, 200, height*200/width, true);
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            image.compress( Bitmap.CompressFormat.JPEG, 100, stream);
+            uploadBitmap.compress( Bitmap.CompressFormat.JPEG, 50, stream);
             byte[] byteArray = stream.toByteArray();
 
             socket.getOutputStream().write(byteArray);
@@ -94,6 +97,11 @@ public class NetworkManager {
 
     public void readMsg () {
         try {
+            try {
+                Thread.sleep(100);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             InputStream input = socket.getInputStream();
             int numofdata = input.available();
             while (numofdata < 1) {
@@ -118,6 +126,7 @@ public class NetworkManager {
             Data = "fail";
         }
     }
+
 
     public void readList () {
         ArrayList<String> list = new ArrayList<String>();

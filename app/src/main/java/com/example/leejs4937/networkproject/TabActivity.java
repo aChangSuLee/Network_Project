@@ -214,6 +214,7 @@ public class TabActivity extends android.app.TabActivity {
                     {
                         receive_data = NetworkManager.getInstance().getData();
                     }
+
                     if ( receive_data.equals("OK") ) {
                         NetworkManager.getInstance().sendImg(image_bitmap);
                     }
@@ -265,8 +266,10 @@ public class TabActivity extends android.app.TabActivity {
                     {
                         receive_data = NetworkManager.getInstance().getData();
                     }
-                    if ( receive_data.equals("Start") )
+                    if ( receive_data.equals("Start") ) {
+                        NetworkManager.getInstance().clearData();
                         NetworkManager.getInstance().readList();
+                    }
 
                     try {
                         Thread.sleep(1000);
